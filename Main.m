@@ -4,5 +4,12 @@
 %% Producing a plot for just the data we found
 figure()
 T_data = readmatrix('data.csv', 'Range', 'B:B');
+
+% This will convert the data from Fahrenheit to Kelvin
+T_data = ((T_data - 32).* (5/9)) + 273.15;
+
 t_data = 1:1:size(T_data);
 plot(t_data, T_data, 'r-*')
+title('Measured data')
+xlabel('Time (minutes)')
+ylabel('Temperature (K)')
