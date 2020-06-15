@@ -25,3 +25,22 @@ title('Measured data v. solution')
 xlabel('Time (minutes)')
 ylabel('Temperature (K)')
 legend('Real data', 'Solution')
+
+%% Comparing solutions to Runge-Kutta 4
+figure()
+plot(t_sol, T_sol, 'b-*')
+hold on;
+
+y0 = 279.3;
+t0 = 0;
+tf = 299;
+h = 1;
+
+[t1, y1] = RungeKutta4(@(t, T) diffeq(t, T), y0, t0, tf, round(tf / h));
+plot(t1, y1, 'm-*')
+hold on;
+
+title('Solution v. Runge-Kutta (order 4)')
+xlabel('Time (minutes)')
+ylabel('Temperature (K)')
+legend('Solution', 'Runge-Kutta (h = 1)')
